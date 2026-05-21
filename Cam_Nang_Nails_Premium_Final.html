@@ -2,8 +2,10 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Cam Nang Tieng Anh Giao Tiep va Cham Soc Khach Hang Nails</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Tiếng Anh Giao Tiếp & Chăm Sóc Khách Hàng Nails</title>
     <style>
+        /* --- CẤU HÌNH TRANG IN (PDF WEASYPRINT) --- */
         @page {
             size: A4;
             margin: 20mm 15mm;
@@ -15,13 +17,14 @@
                 color: #8c766c;
             }
             @bottom-left {
-                content: "Oak Harbor Nail Spa & Beyond | Quy tac vang tai ban Nails";
+                content: "Oak Harbor Nail Spa & Beyond | Quy tắc vàng tại bàn Nails";
                 font-size: 8.5pt;
                 font-family: Arial, sans-serif;
                 color: #8c766c;
             }
         }
         
+        /* --- PHONG CÁCH CHUNG GIAO DIỆN MÀN HÌNH & WEB --- */
         body {
             margin: 0;
             padding: 0;
@@ -29,63 +32,117 @@
             color: #332c29;
             line-height: 1.6;
             font-size: 10.5pt;
+            background-color: #fdfaf6;
         }
         
         *, *::before, *::after {
             box-sizing: border-box;
         }
         
-        /* Cover Header Styling */
+        /* --- ĐÃ SỬA: BANNER ĐẦU TRANG AN TOÀN CHO MOBILE --- */
         .header-banner {
-            margin: -20mm -15mm 25px -15mm;
-            padding: 45px 15mm 40px 15mm;
-            background-color: #433d3a; /* Deep charcoal brown to match the brand */
+            background-color: #433d3a; /* Màu nâu Charcoal sang trọng của tiệm */
             color: #ffffff;
             text-align: center;
-            border-bottom: 5px solid #b08d77; /* Soft terracotta accent */
-        }
-        
-        .logo-box {
-            margin-bottom: 15px;
-        }
-        
-        .logo-title {
-            font-family: 'Times New Roman', Georgia, serif;
-            font-size: 32pt;
-            letter-spacing: 14px;
-            font-weight: bold;
-            color: #ffffff;
+            border-bottom: 5px solid #b08d77; /* Màu Terracotta thanh lịch */
+            padding: 40px 20px;
             margin: 0;
         }
         
+        /* Tối ưu hóa lề tràn viền chỉ khi xuất file in PDF bằng WeasyPrint */
+        @media print {
+            .header-banner {
+                margin: -20mm -15mm 25px -15mm;
+                padding: 45px 15mm 40px 15mm;
+            }
+        }
+        
+        /* --- KHUNG LOGO EMBLEN THUẦN CSS SANG TRỌNG --- */
+        .logo-emblem-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-emblem {
+            width: 55px;
+            height: 110px;
+            border: 2px solid #ffffff;
+            border-radius: 28px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Tạo khoảng đứt cạnh hai bên khung bầu dục chuẩn nhận diện logo tiệm */
+        .logo-emblem::before {
+            content: '';
+            position: absolute;
+            top: 25%;
+            bottom: 25%;
+            left: -3px;
+            right: -3px;
+            background-color: #433d3a;
+            z-index: 1;
+        }
+
+        .logo-letters {
+            position: relative;
+            z-index: 2;
+            font-family: 'Times New Roman', Georgia, serif;
+            font-size: 15pt;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: 0px;
+            text-align: center;
+        }
+        
         .logo-subtitle {
-            font-size: 8.5pt;
-            letter-spacing: 5px;
+            font-size: 8pt;
+            letter-spacing: 4px;
             color: #dfcca8;
             text-transform: uppercase;
-            margin-top: 8px;
+            margin-top: 10px;
             font-weight: bold;
         }
         
         h1 {
-            font-size: 17pt;
-            margin: 25px 0 10px 0;
+            font-size: 15pt;
+            margin: 20px 0 10px 0;
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
-            line-height: 1.5;
+            line-height: 1.4;
             font-weight: bold;
         }
         
         .header-desc {
-            font-size: 10.5pt;
+            font-size: 9.5pt;
             color: #ebdcd0;
             font-style: italic;
-            margin: 12px 0 0 0;
+            margin: 10px 0 0 0;
             letter-spacing: 0.5px;
+            line-height: 1.4;
         }
         
-        /* Headings styling */
+        /* --- ĐỊNH DẠNG NỘI DUNG CẨM NANG --- */
+        .content-body {
+            padding: 20px 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media print {
+            .content-body {
+                padding: 0;
+                max-width: 100%;
+            }
+        }
+
         h2 {
             font-size: 13.5pt;
             color: #433d3a;
@@ -127,7 +184,6 @@
             font-size: 10pt;
         }
         
-        /* Table Layout for Phrases */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -176,25 +232,6 @@
             color: #332c29;
         }
         
-        /* Highlight boxes */
-        .tip-box {
-            background-color: #f7f0e8;
-            border: 1px dashed #b08d77;
-            padding: 12px 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-            page-break-inside: avoid;
-        }
-        
-        .tip-title {
-            font-weight: bold;
-            color: #433d3a;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            font-size: 9.5pt;
-        }
-        
-        /* NEW DESIGNED GRAPHIC BOXES (Replaces empty images with premium typography layouts) */
         .graphic-design-box {
             background-color: #eae3db;
             border: 1px solid #b08d77;
@@ -227,7 +264,7 @@
         
         .graphic-quote {
             font-family: 'Times New Roman', Georgia, serif;
-            font-size: 14pt;
+            font-size: 13pt;
             font-style: italic;
             color: #433d3a;
             line-height: 1.4;
@@ -270,7 +307,7 @@
         
         .salon-signature {
             font-family: 'Times New Roman', serif;
-            font-size: 14pt;
+            font-size: 13pt;
             letter-spacing: 3px;
             color: #b08d77;
             margin-top: 5px;
@@ -279,206 +316,200 @@
 </head>
 <body>
 
-    <!-- Cover / Elegant Top Header Banner -->
     <div class="header-banner">
-        <div class="logo-box">
-            <div class="logo-title">O H N S</div>
-            <div class="logo-subtitle">Oak Harbor Nail Spa & Beyond</div>
+        <div class="logo-emblem-container">
+            <div class="logo-emblem">
+                <div class="logo-letters">O<br>H<br>N<br>S</div>
+            </div>
         </div>
+        <div class="logo-subtitle">Oak Harbor Nail Spa & Beyond</div>
         <h1>Cẩm Nang Tiếng Anh Giao Tiếp &<br>Bí Quyết Chăm Sóc Khách</h1>
         <div class="header-desc">Biến Khách Vãng Lai Thành Khách Request Đích Danh • Nâng Tầm Giá Trị Thợ Nails Tại Mỹ</div>
     </div>
 
-    <!-- Introduction Box -->
-    <div class="intro-box">
-        <p><strong>Lời gửi gắm từ Ben & Mindy:</strong> Thân gửi các anh chị em thợ nails! Chúng ta qua Mỹ làm việc vất vả 6 ngày một tuần, tay nghề ai cũng khéo léo, tỉ mỉ. Thế nhưng, rào cản tiếng Anh khiến nhiều người ngại giao tiếp, mất đi lượng tiền tip xứng đáng và không giữ được khách "ruột" request riêng mình. Cẩm nang này được đúc kết dựa trên các nguyên lý dịch vụ khách hàng cốt lõi và thiết kế riêng cho môi trường tiệm nails tại Mỹ, giúp anh chị tự tin bứt phá thu nhập ngay hôm nay!</p>
-    </div>
-
-    <!-- Section 1 -->
-    <h2>Phần 1: Nghệ Thuật Chào Đón & Tạo Ấn Tượng Đầu Tiên</h2>
-    <p>Sự hài lòng của khách hàng bắt đầu ngay từ giây phút đầu tiên họ bước vào khu vực làm việc của bạn. Việc chuẩn bị bàn làm việc sạch sẽ, ngăn nắp và luôn đúng giờ là nền tảng cơ bản nhất của một người thợ chuyên nghiệp. Khi tiếp xúc với khách Mỹ, hãy luôn chủ động mỉm cười, duy trì tương tác bằng mắt (eye contact) để xóa tan bầu không khí ngượng ngùng ban đầu.</p>
-    
-    <h3>Mẫu câu giao tiếp thực chiến khi đón khách:</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
-                <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Hi there! Welcome to our salon. How are you doing today?"</span>
-                    <div class="pronunciation">(Hai đe! Wel-com tu ao sa-lon. Hao a iu đu-ing tu-đê?)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Chào bạn! Chào mừng đến với tiệm của chúng tôi. Hôm nay bạn thế nào? (Lời chào chủ động tạo thiện cảm rất lớn).</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Please take a seat right here. My name is Ben (or Mindy), I'll be taking care of your nails today."</span>
-                    <div class="pronunciation">(Plít têik e sít rai hia. Mai nêim iz Ben (o Min-đi), ai-wil bi têik-ing ke-of io nei-z tu-đê)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Mời bạn ngồi đây ạ. Tên tôi là Ben (hoặc Mindy), tôi sẽ chăm sóc móng cho bạn hôm nay nhé.</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Would you like something to drink? We have water, soda, and tea."</span>
-                    <div class="pronunciation">(Wut iu laik păm-ting tu đrink? Wi hév wo-tờ, so-đa, èn ti)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Bạn có muốn uống chút gì không? Tiệm có nước lọc, soda và trà. (Một dịch vụ nhỏ chu đáo khiến khách thấy được trân trọng).</span></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- DESIGNED IMAGE SLOT 1 (Typographic Art Box to fill the first empty spot completely) -->
-    <div class="graphic-design-box">
-        <div class="graphic-label">OHNS - GIAO TIẾP THỨC CHIẾN</div>
-        <div class="graphic-quote">"Khách hàng có thể quên những gì bạn nói, quên những gì bạn làm, nhưng họ sẽ không bao giờ quên cảm giác trân trọng mà bạn mang lại cho họ tại bàn Nails."</div>
-        <div class="graphic-author">— Triết Lý Phục Vụ Của Ben & Mindy —</div>
-        <div class="badge-container">
-            <div class="badge-item">Tự Tin Chào Hỏi</div>
-            <div class="badge-item">•</div>
-            <div class="badge-item">Tương Tác Mắt</div>
-            <div class="badge-item">•</div>
-            <div class="badge-item">Nụ Cười Thân Thiện</div>
+    <div class="content-body">
+        <div class="intro-box">
+            <p><strong>Lời gửi gắm từ Ben & Mindy:</strong> Thân gửi các anh chị em thợ nails! Chúng ta qua Mỹ làm việc vất vả 6 ngày một tuần, tay nghề ai cũng khéo léo, tỉ mỉ. Thế nhưng, rào cản tiếng Anh khiến nhiều người ngại giao tiếp, mất đi lượng tiền tip xứng đáng và không giữ được khách "ruột" request riêng mình[cite: 2, 3, 4]. Cẩm nang này được đúc kết dựa trên các nguyên lý dịch vụ khách hàng cốt lõi và thiết kế riêng cho môi trường tiệm nails tại Mỹ, giúp anh chị tự tin bứt phá thu nhập ngay hôm nay! [cite: 5]</p>
         </div>
-    </div>
 
-    <!-- Section 2 -->
-    <h2>Phần 2: Tư Vấn Dịch Vụ & Lắng Nghe Ý Muốn Của Khách</h2>
-    <p>Khách hàng rất sợ người thợ không hiểu ý rồi làm sai dáng móng hoặc sai màu sắc họ yêu cầu. Thay vì im lặng làm theo cảm tính, một người thợ giỏi luôn tập trung cao độ, chủ động đặt câu hỏi để thấu hiểu chính xác mong muốn của khách, đồng thời biết lắng nghe và giải quyết ngay nếu khách có góp ý hay thắc mắc trong lúc làm.</p>
+        <h2>Phần 1: Nghệ Thuật Chào Đón & Tạo Ấn Tượng Đầu Tiên</h2>
+        <p>Sự hài lòng của khách hàng bắt đầu ngay từ giây phút đầu tiên họ bước vào khu vực làm việc của bạn. Việc chuẩn bị bàn làm việc sạch sẽ, ngăn nắp và luôn đúng giờ là nền tảng cơ bản nhất của một người thợ chuyên nghiệp[cite: 34, 37]. Khi tiếp xúc với khách Mỹ, hãy luôn chủ động mỉm cười, duy trì tương tác bằng mắt (eye contact) để xóa tan bầu không khí ngượng ngùng ban đầu[cite: 44].</p>
+        
+        <h3>Mẫu câu giao tiếp thực chiến khi đón khách:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
+                    <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Hi there! Welcome to our salon. How are you doing today?"</span>
+                        <div class="pronunciation">(Hai đe! Wel-com tu ao sa-lon. Hao a iu đu-ing tu-đê?)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Chào bạn! Chào mừng đến với tiệm của chúng tôi. Hôm nay bạn thế nào? (Lời chào chủ động tạo thiện cảm rất lớn [cite: 44]).</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Please take a seat right here. My name is Ben (or Mindy), I'll be taking care of your nails today."</span>
+                        <div class="pronunciation">(Plít têik e sít rai hia. Mai nêim iz Ben (o Min-đi), ai-wil bi têik-ing ke-of io nei-z tu-đê)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Mời bạn ngồi đây ạ. Tên tôi là Ben (hoặc Mindy), tôi sẽ chăm sóc móng cho bạn hôm nay nhé.</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Would you like something to drink? We have water, soda, and tea."</span>
+                        <div class="pronunciation">(Wut iu laik păm-ting tu đrink? Wi hév wo-tờ, so-đa, èn ti)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Bạn có muốn uống chút gì không? Tiệm có nước lọc, soda và trà. (Một dịch vụ nhỏ chu đáo khiến khách thấy được trân trọng [cite: 45, 46]).</span></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <h3>Mẫu câu giao tiếp khi tư vấn dáng và kiểm tra độ hài lòng:</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
-                <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span class="english-phrase">"What shape and length would you prefer today? Square, round, or coffin?"</span>
-                    <div class="pronunciation">(Wắt pêip èn leng thớt iu pri-phơ tu-đê? Quoe, raon, o cóp-phin?)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Bạn muốn làm dáng móng và độ dài thế nào hôm nay? Dáng vuông, tròn, hay coffin?</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Is the length okay for you? Does it hurt anywhere? Please let me know."</span>
-                    <div class="pronunciation">(Iz đơ leng ok tu iu? Đơ-z ít hớt en-ni-wue? Plít let mi nôu)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Độ dài như thế này đã vừa ý bạn chưa? Có bị đau ở đâu không? Xin vui lòng cho tôi biết nhé.</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"How do you like this color after the first coat? Is it what you expected?"</span>
-                    <div class="pronunciation">(Hao đu iu laik đít co-lờ áp-tơ đơ phớt cốt? Iz ít wắt iu êk-spêk-tịt?)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Bạn thấy màu này sau nước sơn đầu tiên thế nào? Có đúng như bạn mong đợi không?</span></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Section 3 -->
-    <h2>Phần 3: Bí Quyết Nâng Cấp Dịch Vụ (Upsell) Tự Nhiên</h2>
-    <p>Đừng bao giờ "ép" khách mua dịch vụ cao hơn, mà hãy khéo léo gợi ý giải pháp mang lại giá trị vượt trội cho họ. Khách Mỹ sẵn sàng chi trả nếu họ thấy xứng đáng với đồng tiền bỏ ra. Bạn cũng có thể áp dụng nguyên lý tặng kèm một dịch vụ nhỏ không tốn nhiều chi phí (như thoa thêm kem dưỡng chất lượng tốt, massage kỹ hơn một chút) để tạo sự bất ngờ và nâng cao điểm trải nghiệm dịch vụ.</p>
-
-    <h3>Mẫu câu gợi ý nâng cấp dịch vụ nhẹ nhàng:</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
-                <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Since you chose a beautiful light color, I highly recommend upgrading to gel. It dries instantly and lasts much longer without chipping."</span>
-                    <div class="pronunciation">(Sỉn iu chút e biu-ti-phu lai co-lờ, ai hai-li re-co-mèn úp-greiding tu gel. Ít đrai in-stần-li èn lát mớt long-gờ)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Vì bạn chọn một màu sáng rất đẹp, tôi khuyên bạn nên nâng cấp lên sơn gel. Nó khô ngay lập tức và giữ được lâu hơn nhiều mà không bị tróc.</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Our deluxe pedicure includes an organic scrub and mud mask. It’s perfect for relaxing and softening your skin."</span>
-                    <div class="pronunciation">(Ao đi-lắc pe-đi-kiu in-clút en o-gă-nic scrúp èn mớt mác. Ít pơ-phêk pho ri-lắc-sing...)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Dịch vụ pedicure cao cấp của chúng tôi bao gồm tẩy tế bào chết organic và mặt nạ bùn. Rất hoàn hảo để thư giãn và làm mềm da của bạn.</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"I’m going to give you a quick extra massage today with our organic lotion to help relax your hands."</span>
-                    <div class="pronunciation">(Ai em go-ing tu gíp iu e quích êk-stra mát-sa tu-đê wiđ ao o-gă-nic lo-sờn...)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Hôm nay tôi sẽ massage thêm một chút cho bạn với kem dưỡng organic để giúp đôi tay bạn được thư giãn thêm nhé. (Quà tặng nhỏ đổi lại giá trị Típ lớn).</span></td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- DESIGNED IMAGE SLOT 2 (Typographic Art Box to fill the second empty spot completely) -->
-    <div class="graphic-design-box" style="background-color: #f7f0e8;">
-        <div class="graphic-label">OHNS - TIÊU CHUẨN VÀNG ĐỂ TĂNG THU NHẬP</div>
-        <div class="graphic-quote">"Upsell không phải là ép khách chi tiền, mà là trao đúng giải pháp bền đẹp. Tặng thêm vài phút ân cần, quả ngọt nhận lại chính là sự trung thành và tiền Tip xứng đáng."</div>
-        <div class="graphic-author">— Công Thức Giữ Chân Khách Của Oak Harbor Nail Spa —</div>
-        <div class="badge-container">
-            <div class="badge-item">Tư Vấn Tận Tâm</div>
-            <div class="badge-item">•</div>
-            <div class="badge-item">Tặng Kèm Trải Nghiệm</div>
-            <div class="badge-item">•</div>
-            <div class="badge-item">Khách Ghi Nhớ Tên</div>
+        <div class="graphic-design-box">
+            <div class="graphic-label">OHNS - GIAO TIẾP THỨC CHIẾN</div>
+            <div class="graphic-quote">"Khách hàng có thể quên những gì bạn nói, quên những gì bạn làm, nhưng họ sẽ không bao giờ quên cảm giác trân trọng mà bạn mang lại cho họ tại bàn Nails."</div>
+            <div class="graphic-author">— Triết Lý Phục Vụ Của Ben & Mindy —</div>
+            <div class="badge-container">
+                <div class="badge-item">Tự Tin Chào Hỏi</div>
+                <div class="badge-item">•</div>
+                <div class="badge-item">Tương Tác Mắt</div>
+                <div class="badge-item">•</div>
+                <div class="badge-item">Nụ Cười Thân Thiện</div>
+            </div>
         </div>
-    </div>
 
-    <!-- Section 4 -->
-    <h2>Phần 4: Biến Khách Vãng Lai Thành Khách Ruột "Request"</h2>
-    <p>Mục tiêu cuối cùng là để khách ra về với sự hài lòng tuyệt đối và chỉ có những lời khen dành cho bạn. Đừng để họ làm xong rồi đi luôn mà không có kết nối. Khi kết thúc buổi làm việc, hãy khéo léo khen ngợi thành quả, gửi danh thiếp (business card) hoặc thông tin trang cá nhân và chủ động mời họ đặt lịch hẹn trực tiếp với bạn cho lần sau.</p>
+        <h2>Phần 2: Tư Vấn Dịch Vụ & Lắng Nghe Ý Muốn Của Khách</h2>
+        <p>Khách hàng rất sợ người thợ không hiểu ý rồi làm sai dáng móng hoặc sai màu sắc họ yêu cầu[cite: 33, 35]. Thay vì im lặng làm theo cảm tính, một người thợ giỏi luôn tập trung cao độ, chủ động đặt câu hỏi để thấu hiểu chính xác mong muốn của khách, đồng thời biết lắng nghe và giải quyết ngay nếu khách có góp ý hay thắc mắc trong lúc làm[cite: 36, 48, 49].</p>
 
-    <h3>Mẫu câu giữ chân khách và xin hẹn trước (Rebooking):</h3>
-    <table>
-        <thead>
-            <tr>
-                <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
-                <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Wow, this shape and color look absolutely amazing on your hands! I love it!"</span>
-                    <div class="pronunciation">(Wao, đít pêip èn co-lờ lúc ép-so-lut-li e-mêi-zing on io hèn! Ai láp ít!)</div>
+        <h3>Mẫu câu giao tiếp khi tư vấn dáng và kiểm tra độ hài lòng:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
+                    <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"What shape and length would you prefer today? Square, round, or coffin?"</span>
+                        <div class="pronunciation">(Wắt pêip èn leng thớt iu pri-phơ tu-đê? Quoe, raon, o cóp-phin?)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Bạn muốn làm dáng móng và độ dài thế nào hôm nay? Dáng vuông, tròn, hay coffin? [cite: 48]</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Is the length okay for you? Does it hurt anywhere? Please let me know."</span>
+                        <div class="pronunciation">(Iz đơ leng ok tu iu? Đơ-z ít hớt en-ni-wue? Plít let mi nôu)</div>
                 </td>
-                <td><span class="vietnamese-meaning">Wow, dáng móng và màu sắc này trông cực kỳ hợp và đẹp trên tay của bạn luôn! Tôi thích quá! (Lời khen thật lòng tạo niềm vui cho khách).</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"I usually work here from Tuesday to Sunday. If you love my work, you can ask for me, Ben (or Mindy), when you call to book next time."</span>
-                    <div class="pronunciation">(Ai iu-zu-o-li wớc hia phrom Tiu-zđê tu Săn-đê. Íp iu láp mai wớc, iu căn ác pho mi, Ben o Min-đi, wen iu col tu búc néks tai-m)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Tôi thường làm việc ở đây từ Thứ Ba đến Chủ Nhật. Nếu bạn thích sản phẩm của tôi, bạn có thể yêu cầu đích danh tôi, Ben (hoặc Mindy), khi gọi đặt lịch lần sau nhé.</span></td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="english-phrase">"Here is my business card. It was a pleasure talking to you today. Have a wonderful day!"</span>
-                    <div class="pronunciation">(Hia iz mai bíp-nịt cát. Ít wơ zơ ple-zờ tọc-king tu iu tu-đê. Hév e wăn-đơ-phu đê!)</div>
-                </td>
-                <td><span class="vietnamese-meaning">Đây là danh thiếp của tôi. Rất vui được trò chuyện với bạn hôm nay. Chúc bạn một ngày tuyệt vời nhé!</span></td>
-            </tr>
-        </tbody>
-    </table>
+                    <td><span class="vietnamese-meaning">Độ dài như thế này đã vừa ý bạn chưa? Có bị đau ở đâu không? Xin vui lòng cho tôi biết nhé[cite: 49].</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"How do you like this color after the first coat? Is it what you expected?"</span>
+                        <div class="pronunciation">(Hao đu iu laik đít co-lờ áp-tơ đơ phớt cốt? Iz ít wắt iu êk-spêk-tịt?)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Bạn thấy màu này sau nước sơn đầu tiên thế nào? Có đúng như bạn mong đợi không? [cite: 35]</span></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <!-- Conclusion/Growth Section -->
-    <h2>Lời Kết: Không Ngừng Phát Triển Để Thành Công</h2>
-    <p>Khi chúng ta mới bắt đầu hành trình tại một môi trường mới, khách hàng hoàn toàn có thể thấu hiểu và thông cảm nếu tiệm hoặc tay nghề của chúng ta chưa đạt đến độ hoàn hảo tuyệt đối hay công cụ chưa đầy đủ. Tuy nhiên, theo thời gian, họ luôn kỳ vọng nhìn thấy sự tiến bộ rõ rệt và chuyên nghiệp hơn mỗi ngày.</p>
-    <p>Hãy liên tục học hỏi các kỹ thuật mới, làm chủ công nghệ, cải thiện không gian làm việc sạch đẹp và đặc biệt là nâng cao khả năng giao tiếp tiếng Anh của mình. Khi bạn đầu tư chỉn chu vào bản thân và chất lượng công việc, khách hàng sẽ nhận ra giá trị vượt trội và sẽ luôn chọn bạn là người đồng hành đáng tin cậy nhất!</p>
+        <h2>Phần 3: Bí Quyết Nâng Cấp Dịch Vụ (Upsell) Tự Nhiên</h2>
+        <p>Đừng bao giờ "ép" khách mua dịch vụ cao hơn, mà hãy khéo léo gợi ý giải pháp mang lại giá trị vượt trội cho họ. Khách Mỹ sẵn sàng chi trả nếu họ thấy xứng đáng với đồng tiền bỏ ra[cite: 41]. Bạn cũng có thể áp dụng nguyên lý tặng kèm một dịch vụ nhỏ không tốn nhiều chi phí (như thoa thêm kem dưỡng chất lượng tốt, massage kỹ hơn một chút) để tạo sự bất ngờ và nâng cao điểm trải nghiệm dịch vụ[cite: 45, 46, 47].</p>
 
-    <!-- Footer Branding -->
-    <div class="footer-note">
-        ĐỒNG HÀNH CÙNG SỰ PHÁT TRIỂN CỦA BẠN<br>
-        <div class="salon-signature">OAK HARBOR NAIL SPA & BEYOND</div>
+        <h3>Mẫu câu gợi ý nâng cấp dịch vụ nhẹ nhàng:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
+                    <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Since you chose a beautiful light color, I highly recommend upgrading to gel. It dries instantly and lasts much longer without chipping."</span>
+                        <div class="pronunciation">(Sỉn iu chút e biu-ti-phu lai co-lờ, ai hai-li re-co-mèn úp-greiding tu gel. Ít đrai in-stần-li èn lát mớt long-gờ)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Vì bạn chọn một màu sáng rất đẹp, tôi khuyên bạn nên nâng cấp lên sơn gel. Nó khô ngay lập tức và giữ được lâu hơn nhiều mà không bị tróc[cite: 41].</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Our deluxe pedicure includes an organic scrub and mud mask. It’s perfect for relaxing and softening your skin."</span>
+                        <div class="pronunciation">(Ao đi-lắc pe-đi-kiu in-clút en o-gă-nic scrúp èn mớt mác. Ít pơ-phêk pho ri-lắc-sing...)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Dịch vụ pedicure cao cấp của chúng tôi bao gồm tẩy tế bào chết organic và mặt nạ bùn. Rất hoàn hảo để thư giãn và làm mềm da của bạn.</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"I’m going to give you a quick extra massage today with our organic lotion to help relax your hands."</span>
+                        <div class="pronunciation">(Ai em go-ing tu gíp iu e quích êk-stra mát-sa tu-đê wiđ ao o-gă-nic lo-sờn...)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Hôm nay tôi sẽ massage thêm một chút cho bạn với kem dưỡng organic để giúp đôi tay bạn được thư giãn thêm nhé. (Quà tặng nhỏ đổi lại giá trị Típ lớn [cite: 46, 47]).</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="graphic-design-box" style="background-color: #f7f0e8;">
+            <div class="graphic-label">OHNS - TIÊU CHUẨN VÀNG ĐỂ TĂNG THU NHẬP</div>
+            <div class="graphic-quote">"Upsell không phải là ép khách chi tiền, mà là trao đúng giải pháp bền đẹp. Tặng thêm vài phút ân cần, quả ngọt nhận lại chính là sự trung thành và tiền Tip xứng đáng."</div>
+            <div class="graphic-author">— Công Thức Giữ Chân Khách Của Oak Harbor Nail Spa —</div>
+            <div class="badge-container">
+                <div class="badge-item">Tư Vấn Tận Tâm</div>
+                <div class="badge-item">•</div>
+                <div class="badge-item">Tặng Kèm Trải Nghiệm</div>
+                <div class="badge-item">•</div>
+                <div class="badge-item">Khách Ghi Nhớ Tên</div>
+            </div>
+        </div>
+
+        <h2>Phần 4: Biến Khách Vãng Lai Thành Khách Ruột "Request"</h2>
+        <p>Mục tiêu cuối cùng là để khách ra về với sự hài lòng tuyệt đối và chỉ có những lời khen dành cho bạn[cite: 50]. Đừng để họ làm xong rồi đi luôn mà không có kết nối. Khi kết thúc buổi làm việc, hãy khéo léo khen ngợi thành quả, gửi danh thiếp (business card) hoặc thông tin trang cá nhân và chủ động mời họ đặt lịch hẹn trực tiếp với bạn cho lần sau[cite: 14, 50].</p>
+
+        <h3>Mẫu câu giữ chân khách và xin hẹn trước (Rebooking):</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 50%;">Tiếng Anh & Phát Âm Gợi Ý</th>
+                    <th style="width: 50%;">Ý Nghĩa & Ngữ Cảnh Sử Dụng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Wow, this shape and color look absolutely amazing on your hands! I love it!"</span>
+                        <div class="pronunciation">(Wao, đít pêip èn co-lờ lúc ép-so-lut-li e-mêi-zing on io hèn! Ai láp ít!)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Wow, dáng móng và màu sắc này trông cực kỳ hợp và đẹp trên tay của bạn luôn! Tôi thích quá! (Lời khen thật lòng tạo niềm vui cho khách [cite: 33]).</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"I usually work here from Tuesday to Sunday. If you love my work, you can ask for me, Ben (or Mindy), when you call to book next time."</span>
+                        <div class="pronunciation">(Ai iu-zu-o-li wớc hia phrom Tiu-zđê tu Săn-đê. Íp iu láp mai wớc, iu căn ác pho mi, Ben o Min-đi, wen iu col tu búc néks tai-m)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Tôi thường làm việc ở đây từ Thứ Ba đến Chủ Nhật. Nếu bạn thích sản phẩm của tôi, bạn có thể yêu cầu đích danh tôi, Ben (hoặc Mindy), khi gọi đặt lịch lần sau nhé.</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <span class="english-phrase">"Here is my business card. It was a pleasure talking to you today. Have a wonderful day!"</span>
+                        <div class="pronunciation">(Hia iz mai bíp-nịt cát. Ít wơ zơ ple-zờ tọc-king tu iu tu-đê. Hév e wăn-đơ-phu đê!)</div>
+                    </td>
+                    <td><span class="vietnamese-meaning">Đây là danh thiếp của tôi. Rất vui được trò chuyện với bạn hôm nay. Chúc bạn một ngày tuyệt vời nhé! [cite: 50]</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Lời Kết: Không Ngừng Phát Triển Để Thành Công</h2>
+        <p>Khi chúng ta mới bắt đầu hành trình tại một môi trường mới, khách hàng hoàn toàn có thể thấu hiểu và thông cảm nếu tiệm hoặc tay nghề của chúng ta chưa đạt đến độ hoàn hảo tuyệt đối hay công cụ chưa đầy đủ[cite: 51]. Tuy nhiên, theo thời gian, họ luôn kỳ vọng nhìn thấy sự tiến bộ rõ rệt và chuyên nghiệp hơn mỗi ngày[cite: 52].</p>
+        <p>Hãy liên tục học hỏi các kỹ thuật mới, làm chủ công nghệ, cải thiện không gian làm việc sạch đẹp và đặc biệt là nâng cao khả năng giao tiếp tiếng Anh của mình[cite: 53, 54, 56]. Khi bạn đầu tư chỉn chu vào bản thân và chất lượng công việc, khách hàng sẽ nhận ra giá trị vượt trội và sẽ luôn chọn bạn là người đồng hành đáng tin cậy nhất! [cite: 41, 57]</p>
+
+        <div class="footer-note">
+            ĐỒNG HÀNH CÙNG SỰ PHÁT TRIỂN CỦA BẠN<br>
+            <div class="salon-signature">OAK HARBOR NAIL SPA & BEYOND</div>
+        </div>
     </div>
 
 </body>
