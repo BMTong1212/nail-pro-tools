@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Bảng Chấm Điểm Thu Nhập | Income Scorecard</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1B2A4A;--gold:#C9A96E;--cream:#FAF7F2;--rose:#B76E79;--white:#fff;--soft:#f0ebe4}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--navy);min-height:100vh}
+.container{max-width:480px;margin:0 auto;padding:20px 16px 40px}
+
+/* HERO */
+.hero{text-align:center;padding:40px 20px 32px;background:linear-gradient(135deg,var(--navy) 0%,#2a3f6e 100%);border-radius:20px;margin-bottom:24px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-50%;right:-30%;width:200px;height:200px;background:rgba(201,169,110,.08);border-radius:50%}
+.hero-badge{display:inline-block;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:4px 14px;border-radius:20px;margin-bottom:16px;text-transform:uppercase}
+.hero h1{color:var(--white);font-size:22px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.hero .en{color:var(--gold);font-size:13px;font-weight:500;font-style:italic;margin-bottom:16px}
+.hero p{color:rgba(255,255,255,.75);font-size:13px;line-height:1.6}
+.hero .time{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);padding:6px 14px;border-radius:20px;color:var(--gold);font-size:12px;font-weight:600;margin-top:16px}
+
+/* PROGRESS */
+.progress-wrap{background:var(--white);border-radius:12px;padding:16px 20px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.progress-bar{height:6px;background:var(--soft);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--rose));border-radius:3px;transition:width .4s ease}
+
+/* CATEGORY CARD */
+.cat-card{background:var(--white);border-radius:16px;padding:24px 20px;margin-bottom:16px;box-shadow:0 2px 12px rgba(0,0,0,.04);transition:transform .2s}
+.cat-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.cat-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cat-title{font-size:14px;font-weight:700;line-height:1.3}
+.cat-title .en{font-size:11px;font-weight:500;color:#888;display:block}
+
+/* QUESTION */
+.question{padding:12px 0;border-bottom:1px solid var(--soft)}
+.question:last-child{border-bottom:none}
+.q-text{font-size:13px;font-weight:500;line-height:1.5;margin-bottom:10px}
+.q-text .en{color:#888;font-size:12px;font-weight:400}
+.options{display:flex;gap:8px}
+.opt{flex:1;text-align:center;padding:8px 4px;border-radius:8px;border:2px solid var(--soft);cursor:pointer;font-size:11px;font-weight:600;transition:all .2s;user-select:none;-webkit-tap-highlight-color:transparent}
+.opt:active{transform:scale(.96)}
+.opt.yes{border-color:var(--gold);background:rgba(201,169,110,.08)}
+.opt.yes.selected{background:var(--gold);color:var(--navy)}
+.opt.some{border-color:var(--rose);background:rgba(183,110,121,.05)}
+.opt.some.selected{background:var(--rose);color:var(--white)}
+.opt.no{border-color:#ccc}
+.opt.no.selected{background:var(--navy);color:var(--white)}
+
+/* SUBMIT */
+.submit-wrap{text-align:center;margin:24px 0}
+.submit-btn{background:linear-gradient(135deg,var(--gold),#d4b878);color:var(--navy);border:none;padding:14px 40px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 4px 16px rgba(201,169,110,.3)}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(201,169,110,.4)}
+.submit-btn:disabled{opacity:.4;cursor:default;transform:none}
+
+/* RESULTS */
+.results{display:none}
+.score-circle{width:140px;height:140px;border-radius:50%;margin:0 auto 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--gold);background:var(--white)}
+.score-num{font-size:42px;font-weight:800;color:var(--navy)}
+.score-max{font-size:13px;color:#888;font-weight:500}
+.score-msg{text-align:center;padding:20px;background:var(--white);border-radius:16px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.score-msg h2{font-size:16px;margin-bottom:8px;color:var(--navy)}
+.score-msg p{font-size:13px;color:#555;line-height:1.6}
+
+/* CATEGORY BARS */
+.cat-result{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--white);border-radius:10px;margin-bottom:8px;box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.cat-result .icon{font-size:16px;width:28px;text-align:center;flex-shrink:0}
+.cat-result .name{font-size:12px;font-weight:600;width:90px;flex-shrink:0}
+.cat-result .bar-wrap{flex:1;height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+.cat-result .bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.cat-result .pts{font-size:12px;font-weight:700;width:30px;text-align:right;flex-shrink:0}
+
+/* ADVICE */
+.advice-card{background:var(--white);border-radius:14px;padding:18px 16px;margin-bottom:12px;border-left:4px solid var(--gold);box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.advice-card h3{font-size:13px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.advice-card p{font-size:12px;color:#555;line-height:1.6}
+.advice-card .fix{background:rgba(201,169,110,.1);padding:8px 12px;border-radius:8px;margin-top:8px;font-size:12px;font-weight:600;color:var(--navy)}
+
+/* CTA */
+.cta-box{background:linear-gradient(135deg,var(--navy),#2a3f6e);border-radius:16px;padding:24px 20px;text-align:center;margin-top:24px}
+.cta-box h3{color:var(--gold);font-size:16px;margin-bottom:8px}
+.cta-box p{color:rgba(255,255,255,.7);font-size:12px;margin-bottom:16px;line-height:1.5}
+.cta-btn{display:inline-block;background:var(--gold);color:var(--navy);padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:all .2s}
+
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <span class="hero-badge">MIỄN PHÍ · FREE</span>
+  <h1>Bảng Chấm Điểm Thu Nhập</h1>
+  <p class="en">Income Scorecard: Are You Earning What You're Worth?</p>
+  <p>Thu nhập của bạn không chỉ phụ thuộc vào tay nghề.<br>Có <strong style="color:var(--gold)">6 yếu tố</strong> quyết định bạn kiếm được bao nhiêu.</p>
+  <div class="time">⏱ Hoàn thành trong 5 phút</div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label"><span id="progText">Câu 0/18</span><span id="progPct">0%</span></div>
+  <div class="progress-bar"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+</div>
+
+<!-- QUESTIONS -->
+<div id="questionsArea"></div>
+
+<!-- SUBMIT -->
+<div class="submit-wrap" id="submitWrap">
+  <button class="submit-btn" id="submitBtn" disabled onclick="showResults()">Xem Kết Quả · See Results</button>
+  <p style="font-size:11px;color:#888;margin-top:8px" id="submitHint">Trả lời tất cả 18 câu hỏi để xem kết quả</p>
+</div>
+
+<!-- RESULTS -->
+<div class="results" id="results"></div>
+
+</div>
+
+<script>
+const categories = [
+  { id:'pricing', icon:'💰', color:'#C9A96E', vi:'Giá Dịch Vụ', en:'Service Pricing',
+    questions:[
+      {vi:'Bạn có bảng giá theo bậc (Good/Better/Best)?', en:'Do you have tiered pricing?'},
+      {vi:'Bạn có tăng giá trong 12 tháng qua không?', en:'Have you raised prices in the last 12 months?'},
+      {vi:'Khách có hiểu sự khác biệt giá trị giữa các bậc dịch vụ không?', en:'Do clients understand the value difference between tiers?'}
+    ],
+    advice:{
+      vi:'Bảng giá theo bậc giúp khách tự chọn nâng cấp. Theo nghiên cứu HBR, hơn 50% khách bắt đầu ở mức thấp sẽ chọn nâng cấp khi có 3 lựa chọn.',
+      fix:'🔧 Hành động ngay: Tạo 3 bậc cho dịch vụ phổ biến nhất — Good, Better, Best. Dùng Menu Template Good/Better/Best.'
+    }
+  },
+  { id:'addons', icon:'✨', color:'#B76E79', vi:'Gợi Ý Dịch Vụ Thêm', en:'Add-On Suggestions',
+    questions:[
+      {vi:'Bạn có gợi ý ít nhất 1 dịch vụ thêm cho mỗi khách?', en:'Do you suggest at least one add-on per client?'},
+      {vi:'Bạn có dùng ngôn ngữ quan sát ("Em thấy da tay chị hơi khô...")?', en:'Do you use observation language?'},
+      {vi:'Bạn gợi ý dịch vụ thêm trong lúc làm (không phải lúc thanh toán)?', en:'Do you suggest during service, not at checkout?'}
+    ],
+    advice:{
+      vi:'Khách hàng trung thành chi tiêu nhiều hơn 67% so với khách mới. Nhưng họ sẽ không tự hỏi — bạn cần gợi ý.',
+      fix:'🔧 Hành động ngay: Thử 1 lần hôm nay — quan sát 1 điều về tay/móng khách → nói ra → gợi ý dịch vụ phù hợp.'
+    }
+  },
+  { id:'retention', icon:'🔄', color:'#5B8C6A', vi:'Giữ Chân Khách', en:'Client Retention',
+    questions:[
+      {vi:'Bạn có đặt lịch hẹn tiếp theo trước khi khách về?', en:'Do you pre-book clients before they leave?'},
+      {vi:'Bạn có nhớ sở thích của khách quen mà không cần hỏi lại?', en:'Do you remember client preferences without asking?'},
+      {vi:'Khách quen có yêu cầu đích danh bạn không?', en:'Do repeat clients request you by name?'}
+    ],
+    advice:{
+      vi:'Thẻ ghi nhớ sở thích khách hàng giúp tăng 22% lượt đặt lịch quay lại trong 3 tháng. Cá nhân hóa tăng tái khách đến 50%.',
+      fix:'🔧 Hành động ngay: Ghi chú sở thích 3 khách hôm nay vào điện thoại — hình dáng móng, màu yêu thích, thích nói chuyện hay im lặng.'
+    }
+  },
+  { id:'communication', icon:'💬', color:'#4A7FB5', vi:'Giao Tiếp Tự Tin', en:'Confident Communication',
+    questions:[
+      {vi:'Bạn có thể giải thích sự khác biệt giữa các dịch vụ bằng tiếng Anh?', en:'Can you explain service differences clearly in English?'},
+      {vi:'Bạn có xử lý được khi khách chê đắt mà không giảm giá?', en:'Do you handle price objections without lowering your price?'},
+      {vi:'Bạn có dùng ngôn ngữ cảm xúc ("tay chị sẽ cảm thấy tuyệt vời")?', en:'Do you use emotional language?'}
+    ],
+    advice:{
+      vi:'Sự tự tin khi nói giá giúp giảm nghi ngờ của khách hơn là giải thích dài dòng. Ngôn ngữ cảm xúc biến giao dịch thành trải nghiệm.',
+      fix:'🔧 Hành động ngay: Học 1 câu gợi ý dịch vụ bằng tiếng Anh — "I\'d love to add a cuticle treatment — your hands will feel so soft."'
+    }
+  },
+  { id:'brand', icon:'📱', color:'#9B6BBF', vi:'Thương Hiệu Cá Nhân', en:'Personal Brand',
+    questions:[
+      {vi:'Bạn có đăng tác phẩm lên mạng xã hội thường xuyên không?', en:'Do you post your work on social media regularly?'},
+      {vi:'Khách có tìm đến bạn qua mạng xã hội hoặc giới thiệu?', en:'Do clients find you through social media or referrals?'},
+      {vi:'Bạn có dịch vụ đặc trưng / chuyên môn riêng không?', en:'Do you have a specialty or signature service?'}
+    ],
+    advice:{
+      vi:'Thợ nail có portfolio mạnh và kỹ năng giao tiếp thu hút khách trung thành và giá cao hơn.',
+      fix:'🔧 Hành động ngay: Chụp 3 bộ nail đẹp nhất tuần này và đăng lên Instagram/Facebook với hashtag chuyên ngành.'
+    }
+  },
+  { id:'career', icon:'🎯', color:'#D4845A', vi:'Lộ Trình Phát Triển', en:'Career Path',
+    questions:[
+      {vi:'Bạn có mục tiêu thu nhập 12 tháng được viết ra không?', en:'Do you have a 12-month income goal written down?'},
+      {vi:'Bạn có biết bước tiếp theo là booth rental, suite, hay mở tiệm?', en:'Do you know your next career step?'},
+      {vi:'Bạn có đầu tư học ngoài kỹ thuật (kinh doanh, giao tiếp, định giá)?', en:'Do you invest in education beyond technique?'}
+    ],
+    advice:{
+      vi:'Kỹ thuật giỏi mà không có mô hình kinh doanh thì thu nhập vẫn bị giới hạn. Lộ trình rõ ràng giúp mỗi bước đi có mục đích.',
+      fix:'🔧 Hành động ngay: Viết ra 1 con số thu nhập mục tiêu cho 12 tháng tới. Dán lên gương phòng tắm.'
+    }
+  }
+];
+
+const msgs = [
+  {min:30, vi:'Bạn đang trên đường tăng thu nhập mạnh!', en:'You\'re on track for serious income growth!', detail:'Bạn đã có nền tảng vững chắc ở hầu hết các lĩnh vực. Tập trung vào 1-2 điểm còn yếu để đột phá.'},
+  {min:20, vi:'Nền tảng tốt — nhưng có điểm nghẽn giữ bạn lại', en:'Strong foundation — but bottlenecks are holding you back', detail:'Bạn có tay nghề và thói quen tốt, nhưng 1-2 yếu tố đang ngăn bạn kiếm được nhiều hơn. Sửa chúng là ưu tiên số 1.'},
+  {min:10, vi:'Tay nghề giỏi, nhưng đang mất tiền vì thiếu hệ thống', en:'Great skills — losing money from missing systems', detail:'Kỹ thuật của bạn không phải vấn đề. Vấn đề là cách bạn giao tiếp, định giá, và giữ khách. Tin vui: tất cả đều học được.'},
+  {min:0, vi:'Bước đầu tiên là biết điểm nghẽn — bạn vừa làm xong!', en:'The first step is knowing — and you just did it!', detail:'Đừng lo — hầu hết thợ nail đều bắt đầu ở đây. Bạn đã dũng cảm kiểm tra. Bây giờ chọn 1 lĩnh vực yếu nhất và bắt đầu từ đó.'}
+];
+
+// BUILD QUESTIONS
+const area = document.getElementById('questionsArea');
+let qIndex = 0;
+categories.forEach((cat,ci) => {
+  const card = document.createElement('div');
+  card.className = 'cat-card';
+  card.innerHTML = `<div class="cat-header"><div class="cat-icon" style="background:${cat.color}15;color:${cat.color}">${cat.icon}</div><div class="cat-title">${cat.vi}<span class="en">${cat.en}</span></div></div>`;
+  cat.questions.forEach((q,qi) => {
+    const qDiv = document.createElement('div');
+    qDiv.className = 'question';
+    const gIdx = ci * 3 + qi;
+    qDiv.innerHTML = `
+      <div class="q-text">${q.vi} <span class="en">(${q.en})</span></div>
+      <div class="options">
+        <div class="opt yes" data-q="${gIdx}" data-v="2" onclick="pick(this)">✅ Luôn luôn</div>
+        <div class="opt some" data-q="${gIdx}" data-v="1" onclick="pick(this)">🔶 Thỉnh thoảng</div>
+        <div class="opt no" data-q="${gIdx}" data-v="0" onclick="pick(this)">❌ Hiếm khi</div>
+      </div>`;
+    card.appendChild(qDiv);
+  });
+  area.appendChild(card);
+});
+
+const answers = new Array(18).fill(null);
+
+function pick(el) {
+  const q = parseInt(el.dataset.q);
+  const v = parseInt(el.dataset.v);
+  answers[q] = v;
+  el.parentElement.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  updateProgress();
+}
+
+function updateProgress() {
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round(answered / 18 * 100);
+  document.getElementById('progText').textContent = `Câu ${answered}/18`;
+  document.getElementById('progPct').textContent = `${pct}%`;
+  document.getElementById('progFill').style.width = `${pct}%`;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = answered < 18;
+  document.getElementById('submitHint').textContent = answered < 18 ? `Còn ${18 - answered} câu nữa` : 'Sẵn sàng xem kết quả! ✨';
+}
+
+function showResults() {
+  const total = answers.reduce((s,v) => s + v, 0);
+  const catScores = categories.map((cat, ci) => {
+    const score = answers[ci*3] + answers[ci*3+1] + answers[ci*3+2];
+    return { ...cat, score };
+  });
+  const weakest = catScores.reduce((min, c) => c.score < min.score ? c : min, catScores[0]);
+  const msg = msgs.find(m => total >= m.min);
+
+  let html = `
+    <div class="hero" style="margin-bottom:20px">
+      <span class="hero-badge">KẾT QUẢ CỦA BẠN · YOUR RESULT</span>
+      <h1 style="font-size:18px">Bảng Chấm Điểm Thu Nhập</h1>
+    </div>
+    <div class="score-circle"><span class="score-num">${total}</span><span class="score-max">/ 36</span></div>
+    <div class="score-msg"><h2>${msg.vi}</h2><p class="en" style="color:var(--gold);font-size:12px;margin-bottom:8px">${msg.en}</p><p>${msg.detail}</p></div>
+    <h3 style="font-size:13px;font-weight:700;margin:20px 0 12px;color:var(--navy)">📊 Điểm theo lĩnh vực</h3>`;
+
+  catScores.forEach(c => {
+    const pct = Math.round(c.score / 6 * 100);
+    const barColor = c.score <= 2 ? '#e74c3c' : c.score <= 4 ? '#C9A96E' : '#27ae60';
+    html += `<div class="cat-result"><span class="icon">${c.icon}</span><span class="name">${c.vi}</span><div class="bar-wrap"><div class="bar-fill" style="width:${pct}%;background:${c.color}"></div></div><span class="pts">${c.score}/6</span></div>`;
+  });
+
+  html += `<h3 style="font-size:13px;font-weight:700;margin:24px 0 12px;color:var(--navy)">💡 Lời khuyên cho từng lĩnh vực</h3>`;
+  catScores.sort((a,b) => a.score - b.score).forEach(c => {
+    const status = c.score <= 2 ? '🔴 Cần cải thiện ngay' : c.score <= 4 ? '🟡 Có thể tốt hơn' : '🟢 Đang làm tốt';
+    html += `<div class="advice-card"><h3>${c.icon} ${c.vi} — ${status}</h3><p>${c.advice.vi}</p><div class="fix">${c.advice.fix}</div></div>`;
+  });
+
+  html += `
+    <div class="cta-box">
+      <h3>Bạn biết điểm nghẽn rồi.<br>Giờ hãy sửa nó. 💪</h3>
+      <p>Điểm yếu nhất của bạn: <strong style="color:var(--gold)">${weakest.vi}</strong><br>Bắt đầu từ đây để thấy thay đổi nhanh nhất.</p>
+      <a class="cta-btn" href="#">Nhận Tài Liệu Miễn Phí →</a>
+    </div>`;
+
+  document.getElementById('questionsArea').classList.add('hidden');
+  document.getElementById('submitWrap').classList.add('hidden');
+  document.getElementById('progressWrap').classList.add('hidden');
+  const res = document.getElementById('results');
+  res.innerHTML = html;
+  res.style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
